@@ -2,8 +2,8 @@
 templateKey: blog-post
 title: Adilet - Demo Blog
 date: 2020-06-23T03:31:41.851Z
-description: Hi I am Adilet. I am developer and create blog website for coffee.
-  I have friend Shakhi who will write awesome blogs here
+description: Hi I am Adilet. I am developer and I create blog websites for
+  coffee. I have friend Shakhi who will write awesome blogs here
 featuredpost: true
 featuredimage: /img/chemex.jpg
 tags:
