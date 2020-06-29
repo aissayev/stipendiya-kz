@@ -1,13 +1,13 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience
+title: Stipendiya KZ
 image: /img/home-jumbotron.jpg
 heading: Great coffee with a conscience
 subheading: Support sustainable farming while enjoying a cup
 mainpitch:
   title: Stipendiya KZ
   description: >
-    Provide writting services. Success Guid to getting Scholarships abroad.
+    Provide writting services. Success Guide to getting Scholarships abroad.
     Professional help with Resume, CV, Cover Letter, and Essays.
 description: >-
   Kaldi is the ultimate spot for coffee lovers who want to learn about their
