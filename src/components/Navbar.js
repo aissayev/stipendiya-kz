@@ -61,21 +61,86 @@ const Navbar = class extends React.Component {
             className={`navbar-menu ${this.state.navBarActiveClass}`}
           >
             <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/">
-                Home
-              </Link>
-              <Link className="navbar-item" to="/about">
-                About
-              </Link>
-              {/* <Link className="navbar-item" to="/products">
-                Products
-              </Link> */}
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
+              <div className="navbar-item has-dropdown is-hoverable">
+                <Link className="navbar-link">
+                  Гранты и стипендии
+                </Link>
+                
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item">
+                    Бакалавриат
+                  </Link>
+                  <Link className="navbar-item">
+                    Магистратура
+                  </Link>
+                  <Link className="navbar-item">
+                    Онлайн курсы
+                  </Link>
+                </div>
+              </div>
+
+              <div className="navbar-item has-dropdown is-hoverable">
+                <Link className="navbar-link">
+                Опыт
+                </Link>
+                
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item">
+                    Стажировка
+                  </Link>
+                  <Link className="navbar-item">
+                    Волонтерство
+                  </Link>
+                  <Link className="navbar-item">
+                    Конференции
+                  </Link>
+                </div>
+              </div>
+
+              
+              <div className="navbar-item has-dropdown is-hoverable">
+                <Link className="navbar-link">
+                Услуги
+                </Link>
+                
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item">
+                    Консультанство по поступлению
+                  </Link>
+                  <Link className="navbar-item">
+                    Сопровождение по сбору документов
+                  </Link>
+                  <Link className="navbar-item">
+                    Правка и перевод мотивационеёного письма
+                  </Link>
+                  <Link className="navbar-item">
+                    Написание работ на английском языке
+                  </Link>
+                </div>
+              </div>
+
+              <div className="navbar-item has-dropdown is-hoverable">
+                <Link className="navbar-link">
+                Вдохновение
+                </Link>
+                
+                <div className="navbar-dropdown">
+                  <Link className="navbar-item">
+                    Полезные советы
+                  </Link>
+                  <Link className="navbar-item">
+                    Истории успеха
+                  </Link>
+                  <Link className="navbar-item">
+                    Мотивационные цитаты
+                  </Link>
+                  <Link className="navbar-item">
+                    Топ Университеты Мира
+                  </Link>
+                </div>
+              </div>
+
+{/* TODO add icons for social media */}
               {/* <Link className="navbar-item" to="/contact/examples">
                 Form Examples
               </Link> */}
