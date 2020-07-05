@@ -1,19 +1,17 @@
 ---
 templateKey: index-page
 title: Stipendiya KZ
-image: /img/home-jumbotron.jpg
+image: /img/home-castle.jpg
 heading: Great coffee with a conscience
 subheading: Support sustainable farming while enjoying a cup
 mainpitch:
   title: Stipendiya KZ
   description: >
-    Provide writting services. Success Guide to getting Scholarships abroad.
-    Professional help with Resume, CV, Cover Letter, and Essays.
+    Платформа для казахстанцев, желающих бесплатно учиться или работать за границей. Полная информация по стипендиям, стажировкам, полезные советы по поступлению. 
+    Профессиональная помощь в составлении профессионального резюме, мотивационного письма, написании научных работ, сочинений, и других документов на английском языке. 
 description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
+  Платформа для казахстанцев, желающих бесплатно учиться или работать за границей. Полная информация по стипендиям, стажировкам, полезные советы по поступлению. 
+  Профессиональная помощь в составлении профессионального резюме, мотивационного письма, написании научных работ, сочинений, и других документов на английском языке. 
 intro:
   blurbs:
     - image: /img/coffee.png
