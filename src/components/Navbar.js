@@ -139,15 +139,12 @@ const Navbar = class extends React.Component {
                   </Link>
                 </div>
               </div>
-
+            </div>
 {/* TODO add icons for social media */}
-              {/* <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link> */}
-            </div>
-            <div className="navbar-end has-text-centered">
-                {/* TODO put something at the end */}
-            </div>
+            {/* <div className="navbar-end has-text-centered">
+                something
+                <span className="icon"><i className="fas fa-home"></i></span>
+            </div> */}
           </div>
         </div>
       </nav>

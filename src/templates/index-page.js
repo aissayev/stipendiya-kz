@@ -22,7 +22,7 @@ export const IndexPageTemplate = ({
         backgroundImage: `url(${
           !!image.childImageSharp ? image.childImageSharp.fluid.src : image
         })`,
-        backgroundPosition: `center`,
+        backgroundPosition: `bottom `,
         backgroundAttachment: `fixed`,
       }}
     >
@@ -96,12 +96,12 @@ export const IndexPageTemplate = ({
                 </div> */}
                 <div className="column is-12">
                   <h3 className="has-text-weight-semibold is-size-2">
-                    Latest stories
+                    Новое
                   </h3>
                   <BlogRoll />
                   <div className="column is-12 has-text-centered">
                     <Link className="btn" to="/blog">
-                      Read more
+                      Читать еще...
                     </Link>
                   </div>
                 </div>
