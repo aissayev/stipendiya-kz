@@ -1,37 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, useStaticQuery } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Features from '../components/Features'
 import BlogRoll from '../components/BlogRoll'
 import styled from 'styled-components'
 
-const SectionOne = styled.section`
-  height: 400px;
+import Img from 'gatsby-image'
+
+const Hero = styled.section`
+  width: 100%;
+  height: 40vh;
   background-color: #F8F5F1;
+  display: flex;
 `
 
-const SectionOneContentContainer = styled.div`
+const HeroImageContainer = styled.div`
   height: 100%;
+  width: 50%;
 `
 
-const SectionOneContent = styled.div`
+const HeroTextContainer = styled.div`
   height: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
 
-const SectionOneName = styled.div`
+const HeroTextLog = styled.div`
   color: #143B39;
   font-size: 64px;
   font-weight: 700;
   padding: 1rem;
 `
 
-const SectionOneText = styled.span`
+const HeroText = styled.span`
   max-width: 400px;
   font-weight: bold;
   text-align: center;
@@ -49,21 +55,7 @@ export const IndexPageTemplate = ({
 }) => (
   <div>
 
-    <SectionOne className="columns">
-      <SectionOneContentContainer className="column">
-        <SectionOneContent>
-          <SectionOneName>Stipendiya KZ</SectionOneName>
-          <SectionOneText>Платформа для казахстанцев, желающих бесплатно учиться или работать за границей</SectionOneText>
-          <button className="button is-danger is-medium">Узнать подробнее</button>
-        </SectionOneContent>
-      </SectionOneContentContainer>
 
-      <SectionOneContentContainer className="column">
-        <div className="is-vertical-center">
-          <div>Image will go here</div>
-        </div>
-      </SectionOneContentContainer>
-    </SectionOne>
     {/*<section className="columns">*/}
 
     {/*</section>*/}
@@ -116,12 +108,51 @@ IndexPageTemplate.propTypes = {
   }),
 }
 
-const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark
+// const IndexPage = ({ data }) => {
+  const IndexPage = () => {
+  // const { frontmatter } = data.markdownRemark
+
+  const myData = useStaticQuery(graphql`
+    query Images {
+      image: file(relativePath: {eq: "home/splash.jpeg"}) {
+        id
+        childImageSharp {
+          fixed(
+            width: 500
+            duotone: { highlight: "ff0000", shadow: "#222222"}
+          ) {
+            ...GatsbyImageSharpFixed
+          }
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
+  console.log('myData', myData);
 
   return (
     <Layout>
-      <IndexPageTemplate
+      <Hero>
+        <HeroTextContainer>
+          <HeroTextLog>Stipendiya KZ</HeroTextLog>
+          <HeroText>Платформа для казахстанцев, желающих бесплатно учиться или работать за границей</HeroText>
+          <button className="button is-danger is-medium">Узнать подробнее</button>
+        </HeroTextContainer>
+
+        <HeroImageContainer>
+          <Img 
+            style={{ height: "100%", width: "100%"}}
+            imgStyle={{ objectFit: "cover"}}
+            fluid={myData.image.childImageSharp.fluid}></Img>
+        </HeroImageContainer>
+
+    </Hero>
+
+
+      {/* <IndexPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -129,7 +160,8 @@ const IndexPage = ({ data }) => {
         mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
         intro={frontmatter.intro}
-      />
+      /> */}
+
     </Layout>
   )
 }
@@ -144,40 +176,40 @@ IndexPage.propTypes = {
 
 export default IndexPage
 
-export const pageQuery = graphql`
-  query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
-      frontmatter {
-        title
-        image {
-          childImageSharp {
-            fluid(maxWidth: 2048, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        heading
-        subheading
-        mainpitch {
-          title
-          description
-        }
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
-      }
-    }
-  }
-`
+// export const pageQuery = graphql`
+//   query IndexPageTemplate {
+//     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+//       frontmatter {
+//         title
+//         image {
+//           childImageSharp {
+//             fluid(maxWidth: 2048, quality: 100) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//         heading
+//         subheading
+//         mainpitch {
+//           title
+//           description
+//         }
+//         description
+//         intro {
+//           blurbs {
+//             image {
+//               childImageSharp {
+//                 fluid(maxWidth: 240, quality: 64) {
+//                   ...GatsbyImageSharpFluid
+//                 }
+//               }
+//             }
+//             text
+//           }
+//           heading
+//           description
+//         }
+//       }
+//     }
+//   }
+// `
