@@ -44,6 +44,77 @@ const HeroText = styled.span`
   padding: 0.25rem 0 2rem 0;
 `
 
+const About = styled.section`
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+`
+
+const AboutHeader = styled.h2`
+  width: 100%;
+  text-align: center;
+  padding: 4rem;
+`
+
+const AboutSection = styled.section`
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  margin: 1rem 0;
+`
+
+const AboutMissionTextContainer = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+`
+
+const AboutMissionText = styled.div`
+  padding: 3rem 1rem 3rem 1rem;
+  border: 1px solid black;
+  border-left: 0;
+  border-right: 0;
+  display: flex;
+  flex-direction: column;
+`
+
+const AboutMissionImageContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  alighItems: center;
+`
+
+const AboutMissionImage = styled.div`
+  width: 100%;
+  height: 500px;
+  padding: 0 10% 0 10%;
+  display: flex;
+  align-items: center;
+`
+
+const SectionTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+`
+
+const SectionTextHeading = styled.h2`
+  margin-bottom: 1rem;
+`
+
+const SectionTextParagraph = styled.p`
+  margin: 0 1rem 1rem 0;
+`
+
+
+
+
+
 export const IndexPageTemplate = ({
   image,
   title,
@@ -114,6 +185,20 @@ IndexPageTemplate.propTypes = {
 
   const myData = useStaticQuery(graphql`
     query Images {
+      images: allFile(filter: { relativeDirectory : { eq: "home"}}) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
       image: file(relativePath: {eq: "home/splash.jpeg"}) {
         id
         childImageSharp {
@@ -133,6 +218,11 @@ IndexPageTemplate.propTypes = {
 
   console.log('myData', myData);
 
+  const aboutImage1 = myData.images.nodes.find( i => i.name === 'project_mission');
+  const aboutImage2 = myData.images.nodes.find( i => i.name === 'about2');
+  const aboutImage3 = myData.images.nodes.find( i => i.name === 'about3');
+  console.log('projectMisiosn', aboutImage1);
+
   return (
     <Layout>
       <Hero>
@@ -145,11 +235,80 @@ IndexPageTemplate.propTypes = {
         <HeroImageContainer>
           <Img 
             style={{ height: "100%", width: "100%"}}
-            imgStyle={{ objectFit: "cover"}}
+            imgStyle={{ height: "100%", width: "100%", objectFit: "cover"}}
             fluid={myData.image.childImageSharp.fluid}></Img>
         </HeroImageContainer>
-
     </Hero>
+
+      <About>
+        <AboutHeader>О проекте</AboutHeader>
+        <AboutSection>
+          <AboutMissionTextContainer>
+            <AboutMissionText>
+              <h2>Миссия проекта</h2>
+              <p>Миссия проекта stipendiya.kz заключается в том, чтобы помочь талантливым 
+                людям из Казахстана найти бесплатные возможности для получения качественного 
+                образования мирового стандарта и предоставить исчерпывающую информацию о проектах 
+                и стажировках за границей.</p>
+            </AboutMissionText>
+          </AboutMissionTextContainer>
+
+          <AboutMissionImageContainer>
+            <Img
+                style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                imgStyle={{ objectFit: "cover"}}
+                fluid={aboutImage1.childImageSharp.fluid}>
+              </Img>
+          </AboutMissionImageContainer>
+        </AboutSection>
+
+        <AboutSection>
+            <AboutMissionImageContainer>
+              <Img
+                  style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                  imgStyle={{ objectFit: "cover"}}
+                  fluid={aboutImage2.childImageSharp.fluid}>
+                </Img>
+            </AboutMissionImageContainer>
+            <SectionTextContainer>
+              <SectionTextHeading>Чем он отличается от других?</SectionTextHeading>
+                <SectionTextParagraph>Вся информация подобрана специально для Казахстана. Больше не нужно проверять, 
+                  имеете ли вы право подавать на программу: все возможности, описанные на stipendiya.kz, 
+                  предусматривают подачу жителей из Казахстана.</SectionTextParagraph>
+                <SectionTextParagraph>
+                  Вся информация на платформе бесплатная. 
+                  Вам не нужно платить за подписку или рассылку.В отличие от пабликов в Telegram, Instagram 
+                  и Facebook, информация на stipendiya.kz разложена по полочкам и легче воспринимается. Больше 
+                  не нужно путаться между вкладками и тратить свое время. 
+                </SectionTextParagraph>
+                <SectionTextParagraph>
+                  Если вы сомневаетесь в своих силах, 
+                  мы можем вам помочь. Просто ознакомьтесь с Услугами и свяжитесь с нами, если у вас есть интерес.
+                </SectionTextParagraph>
+            </SectionTextContainer>          
+        </AboutSection>
+
+        <AboutSection>
+          <SectionTextContainer>
+            <SectionTextHeading>Есть предложения?</SectionTextHeading>
+              <SectionTextParagraph>Если у вас имеются мысли о том, как можно улучшить нашу платформу, информация
+                 о стипендиальных программах, стажировках и проектах, или просто интересные мысли - заполните 
+                 контактную форму, и мы обязательно вам ответим :)</SectionTextParagraph>
+              <SectionTextParagraph>
+                Сделаем мечту реальностью вместе!
+              </SectionTextParagraph>
+              <button className="button is-danger">Оставить заявку</button>
+          </SectionTextContainer>  
+
+          <AboutMissionImageContainer>
+              <Img
+                  style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                  imgStyle={{ objectFit: "cover"}}
+                  fluid={aboutImage3.childImageSharp.fluid}>
+                </Img>
+          </AboutMissionImageContainer> 
+        </AboutSection>
+      </About>
 
 
       {/* <IndexPageTemplate
@@ -213,3 +372,7 @@ export default IndexPage
 //     }
 //   }
 // `
+
+const styles = {
+  
+}

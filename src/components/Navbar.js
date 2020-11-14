@@ -79,6 +79,7 @@ const Navbar = class extends React.Component {
               <div className="navbar-item"> <NavLink>О проекте</NavLink> </div>
               <div className="navbar-item"> <NavLink>Новости</NavLink></div>
               <div className="navbar-item"> <NavLink> Гранты и стипендии</NavLink></div>
+              <div className="navbar-item"> <NavLink> Опыт</NavLink></div>
               <div className="navbar-item"> <NavLink> Услуги</NavLink></div>
               <div className="navbar-item"> <NavLink> Вдохновение</NavLink></div>
 
