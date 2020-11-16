@@ -14,6 +14,8 @@ $black: #2b2523
 
 $section-color: #F8F5F1
 
+$text-color: #123B38
+
 // TODO All styles that will be here
 
 .navbar .navbar-menu
@@ -138,19 +140,10 @@ $menu-label-color: $white-ter
   cursor: pointer
 
 
-.about-mission-image
-  height: 100%
-  width: 100%
-
-.about-mission-image-style
-  object-fit: cover
-
-.about-button
-  width: 279px
-
-
 @import "~bulma"
 
+body
+  color: $text-color
 
 h1
   font-size: 56px
@@ -166,7 +159,6 @@ h2
 h3
   font-size: 24px
   line-height: 34px
-
 
 // responsiveness
 +tablet-only

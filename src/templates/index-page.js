@@ -5,6 +5,7 @@ import { Link, graphql, useStaticQuery } from 'gatsby'
 import Layout from '../components/Layout'
 import Features from '../components/Features'
 import BlogRoll from '../components/BlogRoll'
+import ArticleCardView from '../components/ArticleCardView'
 import styled from 'styled-components'
 
 import Img from 'gatsby-image'
@@ -112,6 +113,21 @@ const SectionTextParagraph = styled.p`
 `
 
 
+const News = styled.section`
+  background-color: #F8F5F1;
+  width: 100%;
+`
+const NewsHeader = styled.h2`
+  width: 100%;
+  text-align: center;
+  padding: 4rem;
+`
+
+const NewListView = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 6rem;
+`
 
 
 
@@ -199,6 +215,20 @@ IndexPageTemplate.propTypes = {
           }
         }
       }
+      articleImages: allFile(filter: { relativeDirectory : { eq: "articles"}}) {
+        nodes {
+          id
+          name
+          childImageSharp {
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      } 
       image: file(relativePath: {eq: "home/splash.jpeg"}) {
         id
         childImageSharp {
@@ -221,6 +251,8 @@ IndexPageTemplate.propTypes = {
   const aboutImage1 = myData.images.nodes.find( i => i.name === 'project_mission');
   const aboutImage2 = myData.images.nodes.find( i => i.name === 'about2');
   const aboutImage3 = myData.images.nodes.find( i => i.name === 'about3');
+
+  const articleImage1 = myData.articleImages.nodes.find( i => i.name === 'article3');
   console.log('projectMisiosn', aboutImage1);
 
   return (
@@ -238,24 +270,24 @@ IndexPageTemplate.propTypes = {
             imgStyle={{ height: "100%", width: "100%", objectFit: "cover"}}
             fluid={myData.image.childImageSharp.fluid}></Img>
         </HeroImageContainer>
-    </Hero>
+      </Hero>
 
       <About>
         <AboutHeader>О проекте</AboutHeader>
         <AboutSection>
           <AboutMissionTextContainer>
             <AboutMissionText>
-              <h2>Миссия проекта</h2>
-              <p>Миссия проекта stipendiya.kz заключается в том, чтобы помочь талантливым 
+              <SectionTextHeading>Миссия проекта</SectionTextHeading>
+              <SectionTextParagraph>Миссия проекта stipendiya.kz заключается в том, чтобы помочь талантливым 
                 людям из Казахстана найти бесплатные возможности для получения качественного 
                 образования мирового стандарта и предоставить исчерпывающую информацию о проектах 
-                и стажировках за границей.</p>
+                и стажировках за границей.</SectionTextParagraph>
             </AboutMissionText>
           </AboutMissionTextContainer>
 
           <AboutMissionImageContainer>
             <Img
-                style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                style={{ maxHeight: "492px", width: "80%", borderRadius: "9px", marginLeft: "20%"}}
                 imgStyle={{ objectFit: "cover"}}
                 fluid={aboutImage1.childImageSharp.fluid}>
               </Img>
@@ -265,7 +297,7 @@ IndexPageTemplate.propTypes = {
         <AboutSection>
             <AboutMissionImageContainer>
               <Img
-                  style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                  style={{ maxHeight: "492px", width: "80%", borderRadius: "9px",}}
                   imgStyle={{ objectFit: "cover"}}
                   fluid={aboutImage2.childImageSharp.fluid}>
                 </Img>
@@ -279,11 +311,11 @@ IndexPageTemplate.propTypes = {
                   Вся информация на платформе бесплатная. 
                   Вам не нужно платить за подписку или рассылку.В отличие от пабликов в Telegram, Instagram 
                   и Facebook, информация на stipendiya.kz разложена по полочкам и легче воспринимается. Больше 
-                  не нужно путаться между вкладками и тратить свое время. 
+                  не нужно путаться между вкладками и тратить свое время.
                 </SectionTextParagraph>
                 <SectionTextParagraph>
-                  Если вы сомневаетесь в своих силах, 
-                  мы можем вам помочь. Просто ознакомьтесь с Услугами и свяжитесь с нами, если у вас есть интерес.
+                  Если вы сомневаетесь в своих силах, мы можем вам помочь. Просто ознакомьтесь с Услугами и 
+                  свяжитесь с нами, если у вас есть интерес.
                 </SectionTextParagraph>
             </SectionTextContainer>          
         </AboutSection>
@@ -297,18 +329,30 @@ IndexPageTemplate.propTypes = {
               <SectionTextParagraph>
                 Сделаем мечту реальностью вместе!
               </SectionTextParagraph>
-              <button className="button is-danger">Оставить заявку</button>
+              <button style={{ width: "30%", marginTop: "2rem"}} className="button is-medium is-danger about-button">Оставить заявку</button>
           </SectionTextContainer>  
 
           <AboutMissionImageContainer>
               <Img
-                  style={{ maxHeight: "492px", width: "70%", borderRadius: "9px", marginLeft: "15%"}}
+                  style={{ maxHeight: "492px", width: "80%", borderRadius: "9px", marginLeft: "20%"}}
                   imgStyle={{ objectFit: "cover"}}
                   fluid={aboutImage3.childImageSharp.fluid}>
-                </Img>
+              </Img>
           </AboutMissionImageContainer> 
         </AboutSection>
       </About>
+
+      <News>
+        <NewsHeader>Новости</NewsHeader>
+        <NewListView>
+          {
+            myData.articleImages.nodes.map((image, index) => {
+              return <ArticleCardView key={index} imageFluid={image}></ArticleCardView>
+            })
+          }
+        
+        </NewListView>
+      </News>
 
 
       {/* <IndexPageTemplate
